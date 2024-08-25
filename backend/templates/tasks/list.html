@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<div class="container-fluid">
+    <div class="col-10 text-center">
+        <h1 class="mb-4 mt-4">Tasks</h1>
+    </div>
+{% for task in response %}
+    <div class="col-10 border mx-auto">
+        <div class="row">
+            <p class="col-md-1 col-sm-2 text-center fs-5">{{ task.id }}</p>
+            <p class="col-md-9 col-sm-4 fs-5">{{ task.title }}</p>
+            <p class="col-md-1 col-sm-3 fs-5">{{ task.duration }}</p>
+            <p class="col-md-1 col-sm-3 fs-5">{{ task.done }}</p>
+        </div>
+    </div>  
+{% endfor %}
+</div>
+{% endblock content %}
