@@ -3,19 +3,54 @@
 
 {% block content %}
 
-<div class="container-fluid">
-    <div class="col-10 text-center">
-        <h1 class="mb-4 mt-4">Tasks</h1>
-    </div>
-{% for task in response %}
-    <div class="col-10 border mx-auto">
-        <div class="row">
-            <p class="col-md-1 col-sm-2 text-center fs-5">{{ task.id }}</p>
-            <p class="col-md-9 col-sm-4 fs-5">{{ task.title }}</p>
-            <p class="col-md-1 col-sm-3 fs-5">{{ task.duration }}</p>
-            <p class="col-md-1 col-sm-3 fs-5">{{ task.done }}</p>
+    <div class="container-fluid">
+        <div class="col-10 text-center">
+            <h1 class="mb-4 mt-4">Tasks</h1>
         </div>
-    </div>  
-{% endfor %}
-</div>
+        <div class="row">
+            <div class="col-8 mx-auto border border-primary rounded mb-3 p-2">
+                <div class="text-center mt-2 mb-2">
+                    <h4>Add Your Next Project</h4>
+                </div>
+                <form class="form" method="POST">
+                    {% csrf_token %}
+                    {{ form.title }}
+                    <div class="text-end mt-3 mb-1">
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+        {% for task in response %}
+            <div class="col-10 mx-auto">
+                <div class="row">
+                    <table class="table table-borderless">
+                        <thead>
+                            <tr class="table-success">
+                                <th scope="col" class="text-center">ID</th>
+                                <th scope="col">Title</th>
+                                <th scope="col">Duration</th>
+                                <th scope="col">Completed</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row" class="col-md-1 col-sm-2 text-center fs-5">{{ task.id }}</th>
+                                <td class="col-md-9 col-sm-4 fs-5">{{ task.title }}</td>
+                                <td class="col-md-1 col-sm-3 fs-5">{{ task.duration }}</td>
+                                <td class="col-md-1 col-sm-3 fs-5">{{ task.done }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="row justify-content-end">
+                    <div class="col-2">
+                        <a href='/tasks/{{ task.id }}' class="btn btn-primary mt-1 mb-3">View</a> 
+                    </div>
+                </div>
+            </div>  
+        {% endfor %}
+        </div>
+    </div>
 {% endblock content %}

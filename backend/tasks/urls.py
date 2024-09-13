@@ -20,11 +20,13 @@ from django.urls import path, include
 from .views import (
     home_view,
     tasks_create_view, 
+    tasks_update_view,
     tasks_list_view,
 )
 
 urlpatterns = [
     path('', home_view),
-    path('list', tasks_list_view),
     path('create', tasks_create_view),
+    path('list', tasks_list_view),
+    path('<int:task_id>', tasks_update_view),
 ]

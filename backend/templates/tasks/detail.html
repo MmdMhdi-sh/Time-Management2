@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load mathfilters %}
+
+{% block content %}
+
+<div class="container-fluid">
+    <div class="conatiner border rounded mt-4">
+        <div class="row">
+            <div class="col-10 mx-auto text-center">
+                <h4>{{ task.title }}</h4>
+            </div>
+        </div>
+        {% if task.Description %}
+        <div class="row">
+            <div class="col-10 mx-auto">
+                <h4>Description</h4>
+                <p>{{ task.description }}</p>
+            </div>
+        </div>
+        {% endif %}
+        <div class="row">
+            <div class="col-10 mx-auto pb-2">
+                <p>{{ task.done }} hours you have worked on this task. {{ task.duration|sub:task.done }} is remaining.</p>
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="{{ task.done }}" aria-valuemin="0" aria-valuemax="{{ task.duration }}">{{ task.done|div:task.duration }}%</div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-10 text-end">
+                <div class="btn-group">
+                    <button class="btn btn-success mb-2" type="button">Start</button>
+                    <button class="btn btn-danger mb-2" type="button">Stop</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-10 mx-auto rounded mb-3 p-2">
+            <div class="text-center mt-2 mb-2">
+                <h4>Update Your Task</h4>
+            </div>
+            <form class="form" method="POST">
+                {% csrf_token %}
+                {{ form }}
+                <div class="text-end mt-3 mb-1">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}
