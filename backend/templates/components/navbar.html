@@ -33,6 +33,7 @@
         </form>
         <div class="d-flex">
           {% if user.is_authenticated %}  
+          <a href="/profile/{{ request.user.username }}" class="btn btn-outline-secondary" type="submit">Profile</a> 
           <form action="/logout" method="POST">
             {% csrf_token %}
             <button class="btn btn-outline-success" type="submit">Logout</button> 

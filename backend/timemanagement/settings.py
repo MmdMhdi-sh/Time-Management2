@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     # internal
     'accounts',
     'api',
+    'profiles',
     'tasks',
 ]
 

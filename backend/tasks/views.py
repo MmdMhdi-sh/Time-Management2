@@ -1,4 +1,5 @@
 import random
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import View
 from django.shortcuts import redirect, render
 
@@ -12,7 +13,6 @@ class TasksListView(View):
     template_name = 'tasks/list.html'
     def get(self, request, *args, **kargs):
         # GET Method
-        print('user', request.user.username)
         form = TaskForm()
         qs = Task.objects.all()
         tasks_list = [{"id": task.id, "title": task.title, "done": task.done, "duration": task.duration, "description": task.description} for task in qs]
@@ -56,7 +56,7 @@ tasks_list_view = TasksListView.as_view()
 #     }
 #     return render(request, 'tasks/list.html', context)
 
-class TaskCreateView(View):
+class TaskCreateView(LoginRequiredMixin, View):
     template_name = 'tasks/create.html'
     def get(self, request, *args, **kargs):
         # GET Method
@@ -70,6 +70,7 @@ class TaskCreateView(View):
         form = TaskForm(request.POST)
         if form.is_valid():
             new_task = form.save(commit=False)
+            new_task.user = request.user
             new_task.duration = random.randint(1, 100)
             new_task.done = random.randint(0, new_task.duration)
             new_task.save()
