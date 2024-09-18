@@ -17,7 +17,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from tasks.views import tasks_list_view
+
 urlpatterns = [
+    path('', tasks_list_view, name='homePage'),
+    path('', include('accounts.urls')),
     path('admin/', admin.site.urls),
     path('tasks/', include('tasks.urls')),
     path('api/', include('api.urls'))

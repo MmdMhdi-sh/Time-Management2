@@ -31,6 +31,18 @@
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
           <button class="btn btn-outline-success" type="submit">Search</button>
         </form>
+        <div class="d-flex">
+          {% if user.is_authenticated %}  
+          <form action="/logout" method="POST">
+            {% csrf_token %}
+            <button class="btn btn-outline-success" type="submit">Logout</button> 
+          </form>
+          
+          {% else %}
+          <a href="/register" class="btn btn-outline-success" type="submit">Sign Up</a>
+          <a href="/login" class="btn btn-outline-primary" type="submit">Login</a>  
+          {% endif %} 
+        </div>
       </div>
     </div>
   </nav>

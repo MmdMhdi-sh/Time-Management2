@@ -12,7 +12,7 @@
                 <div class="text-center mt-2 mb-2">
                     <h4>Add Your Next Project</h4>
                 </div>
-                <form class="form" method="POST">
+                <form action="/tasks/create" class="form" method="POST">
                     {% csrf_token %}
                     {{ form.title }}
                     <div class="text-end mt-3 mb-1">

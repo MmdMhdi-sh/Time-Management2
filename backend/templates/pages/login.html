@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+    <div class="container-fluid">
+        <div class="col-10 text-center">
+            <h1 class="mb-4 mt-4">Login</h1>
+        </div>
+        <div class="row">
+            <div class="col-8 mx-auto border border-primary rounded mb-3 p-2">
+                <div class="text-center mt-2 mb-2">
+                    <h4>Login</h4>
+                </div>
+                <form action="/login" class="form" method="POST">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <div class="text-end mt-3 mb-1">
+                        <button type="submit" class="btn btn-primary">Login</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

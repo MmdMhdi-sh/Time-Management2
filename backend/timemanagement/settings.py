@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'mathfilters',
     'rest_framework',
     # internal
+    'accounts',
     'api',
     'tasks',
 ]

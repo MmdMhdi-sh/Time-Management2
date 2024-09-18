@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load mathfilters %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-10 mx-auto rounded mb-3 p-2">
+            <div class="text-center mt-2 mb-2">
+                <h4>Update Your Task</h4>
+            </div>
+            <form class="form" method="POST">
+                {% csrf_token %}
+                {{ form }}
+                <div class="text-end mt-3 mb-1">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}

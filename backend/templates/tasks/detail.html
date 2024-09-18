@@ -41,7 +41,7 @@
             <div class="text-center mt-2 mb-2">
                 <h4>Update Your Task</h4>
             </div>
-            <form class="form" method="POST">
+            <form action="/tasks/{{ task.id }}/update" class="form" method="POST">
                 {% csrf_token %}
                 {{ form }}
                 <div class="text-end mt-3 mb-1">
