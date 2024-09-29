@@ -17,10 +17,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from two_factor.urls import urlpatterns as tf_urls
+
 from tasks.views import tasks_list_view
 
 urlpatterns = [
     path('', tasks_list_view, name='homePage'),
+    path(r'', include(tf_urls)),
     path('', include('accounts.urls')),
     path('admin/', admin.site.urls),
     path('profile/', include('profiles.urls')),
